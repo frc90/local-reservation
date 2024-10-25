@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -37,4 +38,20 @@ public class Reservation {
             name = "user_id"
     )
     private User user;
+
+    @ManyToMany(
+            cascade = CascadeType.ALL
+    )
+    @JoinTable(
+            name = "local_reservation",
+            joinColumns = @JoinColumn(
+                    name = "local_id",
+                    referencedColumnName = "id"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "reservation_id",
+                    referencedColumnName = "id"
+            )
+    )
+    private List<Local> locals;
 }

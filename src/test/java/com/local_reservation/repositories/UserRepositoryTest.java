@@ -1,11 +1,13 @@
 package com.local_reservation.repositories;
 
+import com.local_reservation.entities.Local;
 import com.local_reservation.entities.Reservation;
 import com.local_reservation.entities.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.swing.text.html.Option;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,11 +24,24 @@ class UserRepositoryTest {
 
     @Autowired
     private ReservationRepository reservationRepository;
+    @Autowired
+    private LocalRepository localRepository;
 
     @Test
     public void createUser(){
         Optional<User> existingUser = userRepository.findByEmail("franci1@gmail.com");
+        Optional<Local> ifLocal = localRepository.findByName("local 1");
         if (!existingUser.isPresent()) {
+            if (!ifLocal.isPresent()) {
+                Local local = new Local(
+                        null,
+                        "local 1",
+                        "primer piso",
+                        45,
+                        true
+                );
+                localRepository.save(local);
+            }
             User user = new User(
                     null,
                     "Francisco",
@@ -43,17 +58,29 @@ class UserRepositoryTest {
                     "Francisco",
                     LocalDate.of(2020, 10, 10),
                     45,
-                    user
+                    user,
+                    List.of(ifLocal.get())
             );
             reservationRepository.save(reservation);
         } else {
+            if (!ifLocal.isPresent()) {
+                Local local = new Local(
+                        null,
+                        "local 1",
+                        "primer piso",
+                        45,
+                        true
+                );
+                localRepository.save(local);
+            }
             Reservation reservation = new Reservation(
                     null,
                     "No 1",
                     "Francisco",
                     LocalDate.of(2020, 10, 10),
                     45,
-                    existingUser.get()
+                    existingUser.get(),
+                    List.of(ifLocal.get())
             );
             reservationRepository.save(reservation);
             System.out.println("El usuario con el correo 'franci1@gmail.com' ya existe.");
