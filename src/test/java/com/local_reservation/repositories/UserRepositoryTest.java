@@ -1,20 +1,16 @@
 package com.local_reservation.repositories;
 
-import com.local_reservation.entities.Local;
-import com.local_reservation.entities.Reservation;
-import com.local_reservation.entities.User;
+import com.local_reservation.models.entities.Local;
+import com.local_reservation.models.entities.Reservation;
+import com.local_reservation.models.entities.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.swing.text.html.Option;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class UserRepositoryTest {

@@ -1,4 +1,4 @@
-package com.local_reservation.entities;
+package com.local_reservation.models.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

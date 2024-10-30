@@ -1,6 +1,6 @@
 package com.local_reservation.repositories;
 
-import com.local_reservation.entities.User;
+import com.local_reservation.models.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
